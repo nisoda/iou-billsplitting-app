@@ -1,12 +1,17 @@
 package a.myapplication1;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class StartScreen extends ActionBarActivity {
+
+    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +40,29 @@ public class StartScreen extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addBill(View view) {
+        Intent intent = new Intent(this, AddBillDefault.class);
+        //EditText editText = (EditText) findViewById(R.id.edit_message);
+        //String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, "test");
+        startActivity(intent);
+    }
+
+    public void viewBills(View view) {
+        Intent intent = new Intent(this, ViewBillsDefault.class);
+        //EditText editText = (EditText) findViewById(R.id.edit_message);
+        //String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, "test");
+        startActivity(intent);
+    }
+
+    public void viewFriends(View view) {
+        Intent intent = new Intent(this, ViewFriendsDefault.class);
+        //EditText editText = (EditText) findViewById(R.id.edit_message);
+        //String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, "test");
+        startActivity(intent);
     }
 }

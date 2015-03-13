@@ -16,6 +16,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddBillDefault"
+            android:label="@string/title_activity_add_bill_default"
+            android:parentActivityName=".StartScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a.myapplication1.StartScreen" />
+        </activity>
+        <activity
+            android:name=".ViewBillsDefault"
+            android:label="@string/title_activity_view_bills_default"
+            android:parentActivityName=".StartScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a.myapplication1.StartScreen" />
+        </activity>
+        <activity
+            android:name=".ViewFriendsDefault"
+            android:label="@string/title_activity_view_friends_default"
+            android:parentActivityName=".StartScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a.myapplication1.StartScreen" />
+        </activity>
     </application>
 
 </manifest>

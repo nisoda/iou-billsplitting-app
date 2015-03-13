@@ -1,0 +1,228 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="a.myapplication1.AddBillDefault"
+    android:nestedScrollingEnabled="true"
+    android:background="#ffffffff"
+    android:id="@+id/rootLayout"
+    android:focusableInTouchMode="false">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/relLayout">
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/billNameText"
+                android:layout_alignParentTop="true"
+                android:editable="true"
+                android:enabled="true"
+                android:background="#ffA2BFF4"
+                android:clickable="true"
+                android:hint="Bill Name"
+                android:paddingLeft="16dp"
+                android:singleLine="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/amountText"
+                android:background="#ffA2BFF4"
+                android:editable="true"
+                android:clickable="true"
+                android:elegantTextHeight="false"
+                android:hint="Amount"
+                android:paddingLeft="16dp"
+                android:layout_below="@+id/billNameText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Tip"
+                android:id="@+id/tipTextView"
+                android:layout_below="@+id/amountText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="16dp" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tipTextView"
+                android:layout_toRightOf="@+id/tipTextView"
+                android:layout_marginLeft="16dp"
+                android:focusableInTouchMode="false"
+                android:id="@+id/tipRadioGroup"
+                android:baselineAligned="false">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="None"
+                    android:id="@+id/tipNoneRadioButton"
+                    android:layout_below="@+id/amountText"
+                    android:layout_toRightOf="@+id/tipTextView"
+                    android:layout_toEndOf="@+id/tipTextView"
+                    android:checked="true"
+                    android:layout_alignTop="@+id/tipTextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15%"
+                    android:id="@+id/tip15RadioButton"
+                    android:layout_below="@+id/amountText"
+                    android:layout_toRightOf="@+id/tipNoneRadioButton"
+                    android:layout_toEndOf="@+id/tipNoneRadioButton"
+                    android:layout_alignTop="@+id/tipTextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18%"
+                    android:id="@+id/tip18RadioButton"
+                    android:layout_alignTop="@+id/tip15RadioButton"
+                    android:layout_toRightOf="@+id/tip15RadioButton"
+                    android:layout_toEndOf="@+id/tip15RadioButton"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20%"
+                    android:id="@+id/tip20RadioButton"
+                    android:layout_below="@+id/amountText"
+                    android:layout_toRightOf="@+id/tip18RadioButton"
+                    android:layout_toEndOf="@+id/tip18RadioButton"
+                    android:layout_alignTop="@+id/tipTextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Custom"
+                    android:id="@+id/tipCustRadioButton"
+                    android:layout_below="@+id/tipNoneRadioButton"
+                    android:layout_alignLeft="@+id/tipNoneRadioButton"
+                    android:layout_alignStart="@+id/tipNoneRadioButton"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:checked="false" />
+
+            </RadioGroup>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/custTipText"
+                android:layout_toRightOf="@+id/tipRadioGroup"
+                android:layout_alignBottom="@+id/tipRadioGroup"
+                android:layout_marginLeft="16dp"
+                android:hint="-- %"
+                android:background="#ffA2BFF4"
+                android:paddingLeft="16dp" />
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_add_friends_to_bill"
+                android:id="@+id/addFriendsBillButton"
+                android:layout_below="@+id/tipRadioGroup"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:background="#ff6495ED" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Tax"
+                android:id="@+id/taxTextView"
+                android:layout_below="@+id/addFriendsBillButton"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="16dp" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
+                android:id="@+id/taxRadioGroup"
+                android:baselineAligned="false"
+                android:layout_alignTop="@+id/taxTextView"
+                android:layout_toRightOf="@+id/taxTextView"
+                android:layout_marginLeft="16dp">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="None"
+                    android:id="@+id/taxNoneRadioButton"
+                    android:layout_below="@+id/amountText"
+                    android:layout_toRightOf="@+id/tipTextView"
+                    android:layout_toEndOf="@+id/tipTextView"
+                    android:checked="true"
+                    android:layout_alignTop="@+id/tipTextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Custom"
+                    android:id="@+id/radioButton"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            </RadioGroup>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/custTaxText"
+                android:hint="-- %"
+                android:background="#ffA2BFF4"
+                android:paddingLeft="16dp"
+                android:layout_alignBottom="@+id/taxRadioGroup"
+                android:layout_toRightOf="@+id/taxRadioGroup"
+                android:layout_marginLeft="16dp" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Done"
+                android:id="@+id/addButton"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:layout_below="@+id/taxRadioGroup"
+                android:background="#ff66ff33"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
