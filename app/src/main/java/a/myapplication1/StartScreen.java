@@ -44,25 +44,16 @@ public class StartScreen extends ActionBarActivity {
 
     public void addBill(View view) {
         Intent intent = new Intent(this, AddBillDefault.class);
-        //EditText editText = (EditText) findViewById(R.id.edit_message);
-        //String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, "test");
         startActivity(intent);
     }
 
     public void viewBills(View view) {
         Intent intent = new Intent(this, ViewBillsDefault.class);
-        //EditText editText = (EditText) findViewById(R.id.edit_message);
-        //String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, "test");
         startActivity(intent);
     }
 
     public void viewFriends(View view) {
         Intent intent = new Intent(this, ViewFriendsDefault.class);
-        //EditText editText = (EditText) findViewById(R.id.edit_message);
-        //String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, "test");
         startActivity(intent);
     }
 }

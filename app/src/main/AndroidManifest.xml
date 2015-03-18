@@ -40,6 +40,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="a.myapplication1.StartScreen" />
         </activity>
+        <activity
+            android:name=".AddFriendDefault"
+            android:label="@string/title_activity_add_friend_default"
+            android:parentActivityName=".ViewFriendsDefault" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a.myapplication1.ViewFriendsDefault" />
+        </activity>
     </application>
 
 </manifest>

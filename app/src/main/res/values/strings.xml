@@ -4,15 +4,17 @@
     <string name="app_name">IOU: The Bill-splitting App</string>
     <string name="action_settings">Settings</string>
     <string name="button_add_bill">Add Bill</string>
-    <string name="button_bills">Bills</string>
-    <string name="button_friends">Friends</string>
     <string name="title_activity_add_bill_default">Add Bill</string>
-    <string name="hello_world_bills">BILLS!!!</string>
-    <string name="hello_world_friends">FRIENDS!!!</string>
-    <string name="edit_message">test</string>
     <string name="button_add_friends_to_bill">Add Friends to Bill</string>
+    <string name="button_bills">Bills</string>
     <string name="title_activity_view_bills_default">Bills</string>
+    <string name="num_bills">You have 0 bills saved.</string>
+    <string name="button_friends">Friends</string>
     <string name="title_activity_view_friends_default">Friends</string>
+    <string name="num_friends">You have 0 friends saved.</string>
+    <string name="button_add_friend">Add Friend</string>
+    <string name="title_activity_add_friend_default">Add Friend</string>
     <string name="hello_world">Hello world!</string>
+    <string name="button_done">Done</string>
 
 </resources>

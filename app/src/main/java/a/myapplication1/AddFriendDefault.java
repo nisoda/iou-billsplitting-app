@@ -8,19 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class ViewFriendsDefault extends ActionBarActivity {
+public class AddFriendDefault extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_friends_default);
+        setContentView(R.layout.activity_add_friend_default);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view_friends_default, menu);
+        getMenuInflater().inflate(R.menu.menu_add_friend_default, menu);
         return true;
     }
 
@@ -37,10 +37,5 @@ public class ViewFriendsDefault extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void addFriend(View view) {
-        Intent intent = new Intent(this, AddFriendDefault.class);
-        startActivity(intent);
     }
 }
