@@ -65,6 +65,7 @@
         android:layout_marginTop="32dp"
         android:layout_below="@+id/emailText"
         android:background="#ff66ff33"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:onClick="saveFriend" />
 
 </RelativeLayout>

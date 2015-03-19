@@ -1,18 +1,32 @@
 package a.myapplication1;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 
 public class AddFriendDefault extends ActionBarActivity {
 
+    private String name;
+    private long phone;
+    private String email;
+    SQLiteHelperFriends sqLiteHelperFriends;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sqLiteHelperFriends = new SQLiteHelperFriends(this);
+        name = "";
+        phone = 0;
+        email = "";
         setContentView(R.layout.activity_add_friend_default);
     }
 
@@ -37,5 +51,24 @@ public class AddFriendDefault extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void saveFriend(View view) {
+        name = ((EditText)findViewById(R.id.friendNameText)).getText().toString();
+
+        if (name.isEmpty()){
+            Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Toast.makeText(this, "Friend saving...", Toast.LENGTH_SHORT).show();
+
+        boolean result = sqLiteHelperFriends.saveFriend(name, phone, email);
+
+        if (result){
+            Toast.makeText(getApplicationContext(), "Friend saved!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Failed to save!", Toast.LENGTH_LONG).show();
+        }
     }
 }
