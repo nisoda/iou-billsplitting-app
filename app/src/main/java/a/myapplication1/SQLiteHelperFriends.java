@@ -23,8 +23,8 @@ public class SQLiteHelperFriends extends SQLiteOpenHelper {
     //Database CREATE TABLE statement
     private static final String TABLE_CREATE = "CREATE TABLE " + TABLE_FRIENDS +
             " (" +
-            COLUMN_NAME + "TEXT PRIMARY KEY NOT NULL, " +
-            COLUMN_PHONE + "LONG, " +
+            COLUMN_NAME + " TEXT PRIMARY KEY NOT NULL, " +
+            COLUMN_PHONE + " TEXT, " +
             COLUMN_EMAIL + " TEXT);";
             //Assume unique friend names
 
@@ -46,7 +46,7 @@ public class SQLiteHelperFriends extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean saveFriend (String name, long phone, String email)
+    public boolean saveFriend (String name, String phone, String email)
     {
         Cursor cursor = getFriend(name);
 

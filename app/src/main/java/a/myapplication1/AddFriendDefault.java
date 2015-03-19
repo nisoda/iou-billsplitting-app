@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class AddFriendDefault extends ActionBarActivity {
 
     private String name;
-    private long phone;
+    private String phone;
     private String email;
     SQLiteHelperFriends sqLiteHelperFriends;
 
@@ -25,7 +25,7 @@ public class AddFriendDefault extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         sqLiteHelperFriends = new SQLiteHelperFriends(this);
         name = "";
-        phone = 0;
+        phone = "";
         email = "";
         setContentView(R.layout.activity_add_friend_default);
     }
@@ -61,14 +61,18 @@ public class AddFriendDefault extends ActionBarActivity {
             return;
         }
 
+
         Toast.makeText(this, "Friend saving...", Toast.LENGTH_SHORT).show();
+
+        phone = ((EditText)findViewById(R.id.phoneText)).getText().toString();
+        email = ((EditText)findViewById(R.id.emailText)).getText().toString();
 
         boolean result = sqLiteHelperFriends.saveFriend(name, phone, email);
 
         if (result){
-            Toast.makeText(getApplicationContext(), "Friend saved!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Friend saved!", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getApplicationContext(), "Failed to save!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Failed to save!", Toast.LENGTH_LONG).show();
         }
     }
 }
