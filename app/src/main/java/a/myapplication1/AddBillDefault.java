@@ -1,9 +1,10 @@
 package a.myapplication1;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,22 +14,26 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 
 public class AddBillDefault extends ActionBarActivity {
 
-    private ArrayList<String> friends;
+    private ArrayList<String> friendsAdded;
+    private SQLiteHelperFriends friends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        friends = new ArrayList<String>();
+        friends = new SQLiteHelperFriends(this);
+        friendsAdded = new ArrayList<String>();
         setContentView(R.layout.activity_add_bill_default);
     }
 
@@ -55,43 +60,61 @@ public class AddBillDefault extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void test(View view) {
-        Intent intent = new Intent(this, ViewFriendsDefault.class);
-        startActivity(intent);
-    }
-
     public void showFriendsPopUp(View view) {
+
+        System.out.println("Attempting to add friends");
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.pop_up_window, (ViewGroup)findViewById(R.id.dropDownListView));
 
-        RelativeLayout layout1 = (RelativeLayout)findViewById(R.id.dropDownRelLayout);
-        final PopupWindow pw = new PopupWindow(layout, LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, true);
+        final PopupWindow pw = new PopupWindow(layout, LayoutParams.WRAP_CONTENT, 300, true);
 
-        pw.setBackgroundDrawable(new BitmapDrawable());
+        pw.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6CA2BFF4")));
         pw.setTouchable(true);
 
         pw.setOutsideTouchable(true);
-        pw.setHeight(LayoutParams.WRAP_CONTENT);
+//        pw.setHeight(LayoutParams.WRAP_CONTENT);
+//        pw.update(200, 100);
 
         pw.setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-                public boolean onTouch(View view, MotionEvent event) {
-                    if(event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-                        pw.dismiss();
-                        return true;
-                    }
-                    return false;
+                if(event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                    pw.dismiss();
+                    return true;
                 }
+                return false;
             }
         });
 
         pw.setContentView(layout);
+        pw.showAsDropDown((TextView)findViewById(R.id.addedFriendsTextView), 10, 0);
 
-        pw.showAsDropDown(layout1);
+        final ListView list = (ListView)layout.findViewById(R.id.dropDownListView);
+        Cursor cursor = friends.getAllFriends();
+        String[]from = new String[]{SQLiteHelperFriends.COLUMN_NAME, SQLiteHelperFriends.COLUMN_PHONE, SQLiteHelperFriends.COLUMN_EMAIL};
+        int[]to = new int[]{R.id.friend_name};
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.view_friend_entry, cursor, from, to);
+        adapter.notifyDataSetChanged();
+        list.setAdapter(adapter);
 
-//        final ListView list = (ListView)layout.findViewById(R.)
+        // OnCLickListiner For List Items
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                TextView friendSelectedTextView;
 
+                friendSelectedTextView = (TextView) view.findViewById(R.id.friend_name);
+
+                String friendSelectedString = friendSelectedTextView.getText().toString();
+
+                if(!friendsAdded.contains(friendSelectedString))
+                    friendsAdded.add(0, friendSelectedString);
+                else
+                    friendsAdded.remove(friendSelectedString);
+
+                ((TextView)findViewById(R.id.addedFriendsTextView)).setText(friendsAdded.toString() + " added.");
+            }
+        });
     }
 }

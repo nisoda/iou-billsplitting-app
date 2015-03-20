@@ -6,15 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -22,20 +14,21 @@ import android.widget.TextView;
 
 public class ViewFriendsDefault extends ActionBarActivity {
 
-    private SQLiteHelperFriends friends = new SQLiteHelperFriends(this);
+    private SQLiteHelperFriends friends;
     ListView lv;
     TextView memName_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        friends = new SQLiteHelperFriends(this);
         setContentView(R.layout.activity_view_friends_default);
         Cursor cursor = friends.getAllFriends();
         String[]from = new String[]{SQLiteHelperFriends.COLUMN_NAME, SQLiteHelperFriends.COLUMN_PHONE, SQLiteHelperFriends.COLUMN_EMAIL};
-        int[]to = new int[]{R.id.member_name};
+        int[]to = new int[]{R.id.friend_name};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.view_friend_entry,cursor,from, to);
         adapter.notifyDataSetChanged();
-        lv = (ListView)findViewById(R.id.memberList_id);
+        lv = (ListView)findViewById(R.id.friendListView);
         lv.setAdapter(adapter);
         // OnCLickListiner For List Items
 //        lv.setOnItemClickListener(new OnItemClickListener() {

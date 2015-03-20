@@ -17,7 +17,7 @@
         android:id="@+id/button" />
 
     <ListView
-        android:id="@+id/memberList_id"
+        android:id="@+id/friendListView"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:dividerHeight="2dp"

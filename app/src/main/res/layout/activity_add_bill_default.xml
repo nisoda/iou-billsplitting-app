@@ -155,7 +155,7 @@
                 android:visibility="invisible"
                 android:enabled="true"
                 android:clickable="true"
-                android:onClick="showFriendsPopUp" />
+                android:onClick="test" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,13 +168,15 @@
                 android:layout_alignLeft="@+id/addFriendsBillButton"
                 android:layout_alignRight="@+id/addFriendsBillButton"
                 android:layout_above="@id/addFriendsBillButton"
-                android:enabled="false"
+                android:enabled="true"
                 android:textColor="#ff000000"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:background="@android:drawable/btn_dropdown"
                 android:backgroundTintMode="multiply"
                 android:gravity="center_vertical"
-                android:paddingLeft="16dp" />
+                android:paddingLeft="16dp"
+                android:onClick="showFriendsPopUp"
+                android:clickable="true" />
 
 
             <TextView
