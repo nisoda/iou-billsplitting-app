@@ -67,7 +67,7 @@ public class SQLiteHelperFriends extends SQLiteOpenHelper {
         } else { // Record exists
             result = db.update(TABLE_FRIENDS, contentValues, COLUMN_NAME + "=?", new String[] { name });
         }
-
+//
         if (result == -1) {
             return false;
         } else {
