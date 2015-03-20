@@ -1,9 +1,11 @@
 package a.myapplication1;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class AddBillDefault extends ActionBarActivity {
@@ -35,5 +37,10 @@ public class AddBillDefault extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void test(View view) {
+        Intent intent = new Intent(this, ViewFriendsDefault.class);
+        startActivity(intent);
     }
 }

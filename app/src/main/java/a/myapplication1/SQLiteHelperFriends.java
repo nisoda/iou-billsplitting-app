@@ -28,7 +28,8 @@ public class SQLiteHelperFriends extends SQLiteOpenHelper {
             COLUMN_EMAIL + " TEXT);";
             //Assume unique friend names
 
-//    private static final String QUERY_FRIENDS_ALL = "SELECT * FROM " +
+    private static final String QUERY_FRIENDS_ALL = "SELECT * FROM " + TABLE_FRIENDS;
+    private static final String QUERY_FRIENDS_NAMES = "SELECT " + COLUMN_NAME + " FROM " + TABLE_FRIENDS;
 
     public SQLiteHelperFriends(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
