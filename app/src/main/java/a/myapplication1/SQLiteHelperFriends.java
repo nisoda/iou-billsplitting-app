@@ -15,6 +15,7 @@ public class SQLiteHelperFriends extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     public static final String TABLE_FRIENDS = "friends";
+    public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_PHONE = "phone";
     public static final String COLUMN_EMAIL = "email";
@@ -23,13 +24,14 @@ public class SQLiteHelperFriends extends SQLiteOpenHelper {
     //Database CREATE TABLE statement
     private static final String TABLE_CREATE = "CREATE TABLE " + TABLE_FRIENDS +
             " (" +
-            COLUMN_NAME + " TEXT PRIMARY KEY NOT NULL, " +
+            COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_NAME + " TEXT  NOT NULL, " +
             COLUMN_PHONE + " TEXT, " +
             COLUMN_EMAIL + " TEXT);";
             //Assume unique friend names
 
-    private static final String QUERY_FRIENDS_ALL = "SELECT * FROM " + TABLE_FRIENDS;
-    private static final String QUERY_FRIENDS_NAMES = "SELECT " + COLUMN_NAME + " FROM " + TABLE_FRIENDS;
+    private static final String QUERY_FRIENDS_ALL = "SELECT * FROM " + TABLE_FRIENDS + ";";
+    private static final String QUERY_FRIENDS_NAMES = "SELECT " + COLUMN_NAME + " FROM " + TABLE_FRIENDS + ";";
 
     public SQLiteHelperFriends(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -82,5 +84,10 @@ public class SQLiteHelperFriends extends SQLiteOpenHelper {
         return db.rawQuery(sql, new String[] { name } );
     }
 
+    public Cursor getAllFriends(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        return db.rawQuery(QUERY_FRIENDS_ALL, new String[]{});
+    }
 
 }

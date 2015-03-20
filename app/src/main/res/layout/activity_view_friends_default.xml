@@ -20,5 +20,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:onClick="addFriend" />
+    <ListView
+        android:id="@+id/memberList_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="2dp" >
+    </ListView>
 
 </RelativeLayout>
