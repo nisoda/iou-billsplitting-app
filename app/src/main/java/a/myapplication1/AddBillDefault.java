@@ -1,7 +1,6 @@
 package a.myapplication1;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,11 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,13 +29,29 @@ import java.util.ArrayList;
 public class AddBillDefault extends ActionBarActivity {
 
     private ArrayList<String> friendsAdded;
+    private String billName;
+    private double amount;
+    private double tip;
+    private double tax;
+    private double total;
+    private String participants;
+    private double amtPer;
+    private SQLiteHelperBills sqLiteHelperBills;
     private SQLiteHelperFriends friends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         friends = new SQLiteHelperFriends(this);
+        sqLiteHelperBills = new SQLiteHelperBills(this);
         friendsAdded = new ArrayList<String>();
+        billName = "";
+        amount = 0.0;
+        tip = 0.0;
+        tax = 0.0;
+        total = 0.0;
+        participants = "";
+        amtPer = 0.0;
         setContentView(R.layout.activity_add_bill_default);
     }
 
@@ -61,19 +79,15 @@ public class AddBillDefault extends ActionBarActivity {
     }
 
     public void showFriendsPopUp(View view) {
-
-        System.out.println("Attempting to add friends");
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.pop_up_window, (ViewGroup)findViewById(R.id.dropDownListView));
+        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.pop_up_listview, (ViewGroup)findViewById(R.id.dropDownListView));
 
         final PopupWindow pw = new PopupWindow(layout, LayoutParams.WRAP_CONTENT, 300, true);
 
-        pw.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6CA2BFF4")));
+        pw.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffffff")));
         pw.setTouchable(true);
 
         pw.setOutsideTouchable(true);
-//        pw.setHeight(LayoutParams.WRAP_CONTENT);
-//        pw.update(200, 100);
 
         pw.setTouchInterceptor(new View.OnTouchListener() {
             @Override
@@ -116,5 +130,73 @@ public class AddBillDefault extends ActionBarActivity {
                 ((TextView)findViewById(R.id.addedFriendsTextView)).setText(friendsAdded.toString() + " added.");
             }
         });
+    }
+
+    public void saveBill(View view) {
+        String amountString;
+        billName = ((EditText)findViewById(R.id.billNameText)).getText().toString();
+
+        if (billName.isEmpty()){
+            Toast.makeText(this, "Bill Name cannot be empty!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        Toast.makeText(this, "Bill saving...", Toast.LENGTH_SHORT).show();
+
+        amount = Double.parseDouble(((EditText)findViewById(R.id.amountText)).getText().toString());
+        total = amount * (1 + tax);
+        total = total * (1 + tip);
+        participants = friendsAdded.toString();
+        amtPer = total / friendsAdded.size();
+
+        boolean result = sqLiteHelperBills.saveBill(billName, amount, tip, tax, total, participants, amtPer);
+
+        if (result){
+            Toast.makeText(this, "Bill saved!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Failed to save!", Toast.LENGTH_LONG).show();
+        }
+
+        super.onBackPressed();
+    }
+
+    public void tipRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        String customTip = new String();
+
+        switch (view.getId()) {
+            case R.id.tipNoneRadioButton:
+                break;
+            case R.id.tip15RadioButton:
+                if(checked) tip = 0.15;
+                break;
+            case R.id.tip18RadioButton:
+                if(checked) tip = 0.18;
+                break;
+            case R.id.tip20RadioButton:
+                if(checked) tip = 0.20;
+                break;
+            case R.id.tipCustRadioButton:
+                customTip = ((EditText)findViewById(R.id.custTipText)).getText().toString();
+                if(checked && !customTip.isEmpty()) tip = Double.parseDouble(customTip)/100;
+                break;
+            default: break;
+        }
+    }
+
+    public void taxRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        String customTax = new String();
+
+        switch (view.getId()) {
+            case R.id.taxNoneRadioButton:
+                break;
+            case R.id.taxCustRadioButton:
+                customTax = ((EditText)findViewById(R.id.custTaxText)).getText().toString();
+                if(checked && !customTax.isEmpty()) tax = Double.parseDouble(customTax)/100;
+                break;
+            default: break;
+        }
     }
 }

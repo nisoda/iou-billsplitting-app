@@ -2,14 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/popUpView"
+    android:id="@+id/popUpListView"
     android:weightSum="1"
     android:gravity="center">
 
     <ListView android:id="@+id/dropDownListView"
         android:layout_width="317dp"
         android:layout_height="wrap_content"
-        android:background="#ffA2BFF4"
         android:layout_weight="0.25"
         android:layout_gravity="center">
         </ListView>

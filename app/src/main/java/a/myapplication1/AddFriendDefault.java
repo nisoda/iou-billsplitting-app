@@ -18,7 +18,7 @@ public class AddFriendDefault extends ActionBarActivity {
     private String name;
     private String phone;
     private String email;
-    SQLiteHelperFriends sqLiteHelperFriends;
+    private SQLiteHelperFriends sqLiteHelperFriends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +70,11 @@ public class AddFriendDefault extends ActionBarActivity {
         boolean result = sqLiteHelperFriends.saveFriend(name, phone, email);
 
         if (result){
-            Toast.makeText(this, "Friend saved!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Friend saved!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Failed to save!", Toast.LENGTH_LONG).show();
         }
+
+        super.onBackPressed();
     }
 }

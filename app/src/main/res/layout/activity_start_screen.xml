@@ -16,7 +16,8 @@
         android:layout_alignParentStart="true"
         android:layout_above="@+id/billsButton"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:background="#ff66ff33" />
+
+        /><!--android:background="#ff66ff33" -->
 
     <Button
         android:layout_width="match_parent"
@@ -32,9 +33,9 @@
         android:layout_alignWithParentIfMissing="false"
         android:layout_centerInParent="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:background="#ff6495ED"
+
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp" /><!--android:background="#ff6495ED"-->
 
     <Button
         android:layout_width="match_parent"
@@ -46,6 +47,7 @@
         android:layout_below="@+id/billsButton"
         android:layout_alignParentLeft="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:background="#ff6495ED" />
+
+        /><!--android:background="#ff6495ED" -->
 
 </RelativeLayout>

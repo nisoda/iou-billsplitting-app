@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyApplication1.iml" filepath="$PROJECT_DIR$/MyApplication1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iou-billsplitting-app.iml" filepath="$PROJECT_DIR$/iou-billsplitting-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/iou-billsplitting-app2.iml" filepath="$PROJECT_DIR$/iou-billsplitting-app2.iml" />
     </modules>
   </component>

@@ -27,12 +27,12 @@
                 android:layout_alignParentTop="true"
                 android:editable="true"
                 android:enabled="true"
-                android:background="#ffA2BFF4"
+
                 android:clickable="true"
                 android:hint="Bill Name"
                 android:paddingLeft="16dp"
                 android:singleLine="false"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" /><!--android:background="#ffA2BFF4"-->
 
             <EditText
                 android:layout_width="fill_parent"
@@ -40,7 +40,7 @@
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/amountText"
-                android:background="#ffA2BFF4"
+
                 android:editable="true"
                 android:clickable="true"
                 android:elegantTextHeight="false"
@@ -50,7 +50,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" /><!--android:background="#ffA2BFF4"-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,7 +83,8 @@
                     android:layout_toEndOf="@+id/tipTextView"
                     android:checked="true"
                     android:layout_alignTop="@+id/tipTextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:onClick="tipRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -94,7 +95,8 @@
                     android:layout_toRightOf="@+id/tipNoneRadioButton"
                     android:layout_toEndOf="@+id/tipNoneRadioButton"
                     android:layout_alignTop="@+id/tipTextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:onClick="tipRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -104,7 +106,8 @@
                     android:layout_alignTop="@+id/tip15RadioButton"
                     android:layout_toRightOf="@+id/tip15RadioButton"
                     android:layout_toEndOf="@+id/tip15RadioButton"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:onClick="tipRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -115,7 +118,8 @@
                     android:layout_toRightOf="@+id/tip18RadioButton"
                     android:layout_toEndOf="@+id/tip18RadioButton"
                     android:layout_alignTop="@+id/tipTextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:onClick="tipRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -126,7 +130,8 @@
                     android:layout_alignLeft="@+id/tipNoneRadioButton"
                     android:layout_alignStart="@+id/tipNoneRadioButton"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:onClick="tipRadioButtonClicked" />
 
             </RadioGroup>
 
@@ -140,14 +145,14 @@
                 android:layout_alignBottom="@+id/tipRadioGroup"
                 android:layout_marginLeft="16dp"
                 android:hint="-- %"
-                android:background="#ffA2BFF4"
-                android:paddingLeft="16dp" />
+
+                android:paddingLeft="16dp" /><!--android:background="#ffA2BFF4"-->
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/addFriendsBillButton"
-                android:layout_below="@+id/tipRadioGroup"
+                android:layout_below="@+id/taxRadioGroup"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="16dp"
@@ -160,32 +165,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No friends added to bill. Add..."
-                android:id="@+id/addedFriendsTextView"
-                android:layout_alignTop="@+id/addFriendsBillButton"
-                android:layout_centerHorizontal="true"
-                android:layout_alignBottom="@+id/addFriendsBillButton"
-                android:layout_alignLeft="@+id/addFriendsBillButton"
-                android:layout_alignRight="@+id/addFriendsBillButton"
-                android:layout_above="@id/addFriendsBillButton"
-                android:enabled="true"
-                android:textColor="#ff000000"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:background="@android:drawable/btn_dropdown"
-                android:backgroundTintMode="multiply"
-                android:gravity="center_vertical"
-                android:paddingLeft="16dp"
-                android:onClick="showFriendsPopUp"
-                android:clickable="true" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:text="Tax"
                 android:id="@+id/taxTextView"
-                android:layout_below="@+id/addFriendsBillButton"
+                android:layout_below="@+id/tipRadioGroup"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="16dp" />
@@ -210,14 +193,16 @@
                     android:layout_toEndOf="@+id/tipTextView"
                     android:checked="true"
                     android:layout_alignTop="@+id/tipTextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:onClick="taxRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Custom"
-                    android:id="@+id/radioButton"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:id="@+id/taxCustRadioButton"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:onClick="taxRadioButtonClicked" />
 
             </RadioGroup>
 
@@ -228,11 +213,11 @@
                 android:ems="10"
                 android:id="@+id/custTaxText"
                 android:hint="-- %"
-                android:background="#ffA2BFF4"
+
                 android:paddingLeft="16dp"
                 android:layout_alignBottom="@+id/taxRadioGroup"
                 android:layout_toRightOf="@+id/taxRadioGroup"
-                android:layout_marginLeft="16dp" />
+                android:layout_marginLeft="16dp" /><!--android:background="#ffA2BFF4"-->
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -242,10 +227,32 @@
                 android:id="@+id/addButton"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="32dp"
-                android:layout_below="@+id/taxRadioGroup"
-                android:background="#ff66ff33"
-                android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+                android:layout_marginTop="48dp"
+                android:layout_below="@+id/addFriendsBillButton"
+
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:onClick="saveBill" /><!--android:background="#ff66ff33"-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No friends added to bill. Add..."
+                android:id="@+id/addedFriendsTextView"
+                android:layout_alignTop="@+id/addFriendsBillButton"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBottom="@+id/addFriendsBillButton"
+                android:layout_alignLeft="@+id/addFriendsBillButton"
+                android:layout_alignRight="@+id/addFriendsBillButton"
+                android:layout_above="@id/addFriendsBillButton"
+                android:enabled="true"
+
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:background="@android:drawable/btn_dropdown"
+                android:backgroundTintMode="multiply"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:onClick="showFriendsPopUp"
+                android:clickable="true" /><!--android:textColor="#ff000000"-->
 
         </RelativeLayout>
     </ScrollView>

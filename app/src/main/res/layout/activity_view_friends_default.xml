@@ -10,18 +10,17 @@
         android:layout_height="@dimen/button_height"
         android:layout_width="fill_parent"
         android:text="@string/button_add_friend"
-        android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:onClick="addFriend"
-        android:id="@+id/button" />
+        android:id="@+id/btn_add_friend" />
 
     <ListView
         android:id="@+id/friendListView"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:dividerHeight="2dp"
-        android:layout_below="@+id/button">
+        android:layout_below="@+id/btn_add_friend">
     </ListView>
 
 </RelativeLayout>

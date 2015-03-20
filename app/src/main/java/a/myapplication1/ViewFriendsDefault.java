@@ -16,7 +16,6 @@ public class ViewFriendsDefault extends ActionBarActivity {
 
     private SQLiteHelperFriends friends;
     ListView lv;
-    TextView memName_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
