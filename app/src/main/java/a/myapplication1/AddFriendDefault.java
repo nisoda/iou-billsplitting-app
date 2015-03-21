@@ -2,6 +2,7 @@ package a.myapplication1;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -70,11 +71,17 @@ public class AddFriendDefault extends ActionBarActivity {
         boolean result = sqLiteHelperFriends.saveFriend(name, phone, email);
 
         if (result){
-            Toast.makeText(this, "Friend saved!", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(AddFriendDefault.this, "Friend saved!", Toast.LENGTH_SHORT).show();
+                    ((EditText)findViewById(R.id.friendNameText)).setText("");
+                    ((EditText)findViewById(R.id.phoneText)).setText("");
+                    ((EditText)findViewById(R.id.emailText)).setText("");
+                }
+            }, 2500);
         } else {
             Toast.makeText(this, "Failed to save!", Toast.LENGTH_LONG).show();
         }
-
-        super.onBackPressed();
     }
 }

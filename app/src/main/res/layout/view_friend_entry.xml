@@ -5,12 +5,26 @@
 
     <TextView
         android:id="@+id/friend_name"
-        android:layout_width="fill_parent"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:textSize="17sp"
-        android:textStyle="bold"
-        android:layout_weight=".5" />
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/friend_phone"
+        android:password="false"
+        android:phoneNumber="false"
+        android:padding="15dp" />
+
+    <TextView
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/friend_email"
+        android:padding="15dp"
+        android:singleLine="true" />
 
 
 </LinearLayout>

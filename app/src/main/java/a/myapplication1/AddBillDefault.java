@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -153,12 +155,25 @@ public class AddBillDefault extends ActionBarActivity {
         boolean result = sqLiteHelperBills.saveBill(billName, amount, tip, tax, total, participants, amtPer);
 
         if (result){
-            Toast.makeText(this, "Bill saved!", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(AddBillDefault.this, "Bill saved!", Toast.LENGTH_SHORT).show();
+                    ((EditText) findViewById(R.id.billNameText)).setText("");
+                    ((EditText) findViewById(R.id.amountText)).setText("");
+                    ((RadioButton) findViewById(R.id.tipNoneRadioButton)).setSelected(true);
+                    ((EditText) findViewById(R.id.custTipText)).setText("");
+                    ((RadioButton) findViewById(R.id.taxNoneRadioButton)).setSelected(true);
+                    ((EditText) findViewById(R.id.custTaxText)).setText("");
+                    ((TextView)findViewById(R.id.addedFriendsTextView)).setText("");
+                    friendsAdded.clear();
+                }
+            }, 2500);
         } else {
             Toast.makeText(this, "Failed to save!", Toast.LENGTH_LONG).show();
         }
 
-        super.onBackPressed();
+
     }
 
     public void tipRadioButtonClicked(View view) {

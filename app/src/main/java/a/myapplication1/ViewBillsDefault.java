@@ -34,8 +34,8 @@ public class ViewBillsDefault extends ActionBarActivity {
         selectedBill = "";
         setContentView(R.layout.activity_view_bills_default);
         Cursor cursor = bills.getAllBills();
-        String[]from = new String[]{SQLiteHelperBills.COLUMN_BILL_NAME, SQLiteHelperBills.COLUMN_PARTICIPANTS};
-        int[]to = new int[]{R.id.bill_name, R.id.amount};
+        String[]from = new String[]{SQLiteHelperBills.COLUMN_BILL_NAME, SQLiteHelperBills.COLUMN_PARTICIPANTS, SQLiteHelperBills.COLUMN_AMT_PER};
+        int[]to = new int[]{R.id.bill_name, R.id.participants, R.id.amount};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.view_bill_entry,cursor,from, to);
         adapter.notifyDataSetChanged();
         lv = (ListView)findViewById(R.id.billListView);

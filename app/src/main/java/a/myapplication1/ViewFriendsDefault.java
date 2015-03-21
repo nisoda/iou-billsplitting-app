@@ -24,7 +24,7 @@ public class ViewFriendsDefault extends ActionBarActivity {
         setContentView(R.layout.activity_view_friends_default);
         Cursor cursor = friends.getAllFriends();
         String[]from = new String[]{SQLiteHelperFriends.COLUMN_NAME, SQLiteHelperFriends.COLUMN_PHONE, SQLiteHelperFriends.COLUMN_EMAIL};
-        int[]to = new int[]{R.id.friend_name};
+        int[]to = new int[]{R.id.friend_name, R.id.friend_phone, R.id.friend_email};
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.view_friend_entry,cursor,from, to);
         adapter.notifyDataSetChanged();
         lv = (ListView)findViewById(R.id.friendListView);
