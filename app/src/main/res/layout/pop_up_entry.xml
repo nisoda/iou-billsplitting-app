@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="@dimen/button_height">
 
     <TextView
         android:id="@+id/popUpEntry"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="317dp"
+        android:layout_height="@dimen/button_height"
         android:textSize="17dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center_vertical|center|center_horizontal"
-        android:background="@android:drawable/btn_default" /><!--android:background="@android:drawable/btn_default"-->
+        android:background="@color/light_green"
+        android:text="TEST" /><!--android:background="@android:drawable/btn_default"-->
 
 </LinearLayout>

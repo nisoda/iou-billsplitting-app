@@ -119,7 +119,7 @@ public class ViewBillsDefault extends ActionBarActivity {
         final ListView list = (ListView)layout.findViewById(R.id.popUpButtonsBillsView);
 
         //Load {"View More", "Delete"} into ListView
-        String[]values = new String[]{"View More", "Delete"};
+        String[]values = new String[]{"View More"/*, "Delete"*/};
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.pop_up_entry, R.id.popUpEntry, values);
         spinnerArrayAdapter.notifyDataSetChanged();
         list.setAdapter(spinnerArrayAdapter);
@@ -138,9 +138,9 @@ public class ViewBillsDefault extends ActionBarActivity {
                 if(buttonSelectedString.equals("View More")) {
                     viewMoreBill(view);
                 }
-                else if(buttonSelectedString.equals("Delete"))
-                    buttonSelectedString = "";
-                //Dialog for deletion
+//                else if(buttonSelectedString.equals("Delete"))
+//                    buttonSelectedString = "";
+//                //Dialog for deletion
             }
         });
     }
@@ -156,7 +156,7 @@ public class ViewBillsDefault extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void deleteBill(View view) {
-
-    }
+//    public void deleteBill(View view) {
+//
+//    }
 }

@@ -61,6 +61,23 @@ public class AddBillDefault extends ActionBarActivity {
         participants = "";
         amtPer = 0.0;
         setContentView(R.layout.activity_add_bill_default);
+
+
+        String[] columns = new String[]{
+                ContactsContract.Contacts.DISPLAY_NAME,
+                ContactsContract.Contacts._ID
+        };
+
+        Cursor contactsCursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, columns, null,null,null);
+
+        int nameColumn = contactsCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+        if(contactsCursor.moveToFirst()){
+            do{
+                //add contacts to friends table
+                String name = contactsCursor.getString(nameColumn);
+                friends.saveFriend(name,"","");
+            }while(contactsCursor.moveToNext());
+        }
     }
 
 
@@ -112,21 +129,6 @@ public class AddBillDefault extends ActionBarActivity {
         pw.showAsDropDown((TextView)findViewById(R.id.addedFriendsTextView), 10, 0);
 
         final ListView list = (ListView)layout.findViewById(R.id.dropDownListView);
-        String[] columns = new String[]{
-                ContactsContract.Contacts.DISPLAY_NAME,
-                ContactsContract.Contacts._ID
-        };
-
-        Cursor contactsCursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, columns, null,null,null);
-
-        int nameColumn = contactsCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
-        if(contactsCursor.moveToFirst()){
-            do{
-                //add contacts to friends table
-                String name = contactsCursor.getString(nameColumn);
-                friends.saveFriend(name,"","");
-            }while(contactsCursor.moveToNext());
-        }
 
         Cursor cursor = friends.getAllFriends();
         String[]from = new String[]{SQLiteHelperFriends.COLUMN_NAME, SQLiteHelperFriends.COLUMN_PHONE, SQLiteHelperFriends.COLUMN_EMAIL};

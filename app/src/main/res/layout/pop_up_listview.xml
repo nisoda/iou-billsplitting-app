@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:id="@+id/popUpListView"
     android:weightSum="1"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/med_blue">
 
     <ListView android:id="@+id/dropDownListView"
         android:layout_width="317dp"

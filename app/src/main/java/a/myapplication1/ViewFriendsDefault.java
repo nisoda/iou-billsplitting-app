@@ -1,10 +1,10 @@
 package a.myapplication1;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,21 +17,21 @@ import android.database.Cursor;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
-
+import android.widget.Toast;
 
 
 public class ViewFriendsDefault extends ActionBarActivity {
 
     private SQLiteHelperFriends friends;
     ListView lv;
-    static String friend_first_name, friend_last_name;
+    static String friend_name_string;
     TextView friend_name_tv;
 
     @Override
@@ -71,7 +71,7 @@ public class ViewFriendsDefault extends ActionBarActivity {
 
                 friend_name_tv = (TextView) view.findViewById(R.id.friend_name);
 
-                friend_first_name = friend_name_tv.getText().toString();
+                friend_name_string = friend_name_tv.getText().toString();
 
                 showButtonPopUp(view);
 //                Intent modify_intent = new Intent(getApplicationContext(),
@@ -134,7 +134,7 @@ public class ViewFriendsDefault extends ActionBarActivity {
         final ListView list = (ListView)layout.findViewById(R.id.popUpButtonsFriendsView);
 
         //Load {"View More", "Delete"} into ListView
-        String[]values = new String[]{"View More", "Delete"};
+        String[]values = new String[]{"View More"/*, "Delete"*/};
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.pop_up_entry, R.id.popUpEntry, values);
         spinnerArrayAdapter.notifyDataSetChanged();
         list.setAdapter(spinnerArrayAdapter);
@@ -153,9 +153,10 @@ public class ViewFriendsDefault extends ActionBarActivity {
                 if(buttonSelectedString.equals("View More")) {
                     viewMoreFriend(view);
                 }
-                else if(buttonSelectedString.equals("Delete"))
-                    buttonSelectedString = "";
-                    //Dialog for deletion
+//                else if(buttonSelectedString.equals("Delete")) {
+//                    deleteFriend(view);
+//                }
+
             }
         });
     }
@@ -170,4 +171,15 @@ public class ViewFriendsDefault extends ActionBarActivity {
         Intent intent = new Intent(this, AddFriendDefault.class);
         startActivity(intent);
     }
+
+//    public void deleteFriend(View view) {
+//        friends.deleteFriend(friend_name_string);
+//
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(ViewFriendsDefault.this, "Friend deleted!", Toast.LENGTH_SHORT).show();
+//            }
+//        }, 2500);
+//    }
 }

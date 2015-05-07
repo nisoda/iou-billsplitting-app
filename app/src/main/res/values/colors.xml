@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dk_blue">#ff0576d5</color>
+    <color name="med_blue">#ff5d9dd5</color>
+    <color name="light_blue">#ffbdd7ee</color>
+    <color name="med_green">#ff6bfd6b</color>
+    <color name="light_green">#ffb6ffb3</color>
+
+</resources>
