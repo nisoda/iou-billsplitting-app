@@ -85,8 +85,7 @@
                     android:checked="true"
                     android:layout_alignTop="@+id/tipTextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:onClick="tipRadioButtonClicked"
-                    android:buttonTint="@color/dk_blue" />
+                    android:onClick="tipRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -98,8 +97,7 @@
                     android:layout_toEndOf="@+id/tipNoneRadioButton"
                     android:layout_alignTop="@+id/tipTextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:onClick="tipRadioButtonClicked"
-                    android:buttonTint="@color/dk_blue" />
+                    android:onClick="tipRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -110,8 +108,7 @@
                     android:layout_toRightOf="@+id/tip15RadioButton"
                     android:layout_toEndOf="@+id/tip15RadioButton"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:onClick="tipRadioButtonClicked"
-                    android:buttonTint="@color/dk_blue" />
+                    android:onClick="tipRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -123,8 +120,7 @@
                     android:layout_toEndOf="@+id/tip18RadioButton"
                     android:layout_alignTop="@+id/tipTextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:onClick="tipRadioButtonClicked"
-                    android:buttonTint="@color/dk_blue" />
+                    android:onClick="tipRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -136,8 +132,7 @@
                     android:layout_alignStart="@+id/tipNoneRadioButton"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:checked="false"
-                    android:onClick="tipRadioButtonClicked"
-                    android:buttonTint="@color/dk_blue" />
+                    android:onClick="tipRadioButtonClicked" />
 
             </RadioGroup>
 
@@ -200,8 +195,7 @@
                     android:checked="true"
                     android:layout_alignTop="@+id/tipTextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:onClick="taxRadioButtonClicked"
-                    android:buttonTint="@color/dk_blue" />
+                    android:onClick="taxRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -209,8 +203,7 @@
                     android:text="Custom"
                     android:id="@+id/taxCustRadioButton"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:onClick="taxRadioButtonClicked"
-                    android:buttonTint="@color/dk_blue" />
+                    android:onClick="taxRadioButtonClicked" />
 
             </RadioGroup>
 
