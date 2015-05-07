@@ -17,8 +17,10 @@ public class ViewMoreFriend extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         List<String> list = new ArrayList<String>();
+
         super.onCreate(savedInstanceState);
         friends = new SQLiteHelperFriends(this);
+
         Cursor cursor = friends.getFriend(ViewFriendsDefault.friend_first_name);
         if(cursor.moveToFirst()){
             do {

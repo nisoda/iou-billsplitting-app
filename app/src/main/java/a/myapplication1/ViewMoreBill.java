@@ -7,17 +7,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ViewMoreBill extends ActionBarActivity {
-        SQLiteHelperBills bills;
+    SQLiteHelperBills bills;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         List<String> list = new ArrayList<String>();
+        ArrayList<String> participantsArray = new ArrayList<String>();
+        String participantsString = "";
+
         super.onCreate(savedInstanceState);
         bills = new SQLiteHelperBills(this);
+
         Cursor cursor = bills.getBill(ViewBillsDefault.bill_name, ViewBillsDefault.bill_date);
         if(cursor.moveToFirst()){
             do {
@@ -27,11 +33,16 @@ public class ViewMoreBill extends ActionBarActivity {
         }
         setContentView(R.layout.activity_view_more_bill);
 
-        ((TextView)findViewById(R.id.friendNameText)).setText(list.get(0));
-        ((TextView)findViewById(R.id.friendPhoneText)).setText(list.get(1));
-        ((TextView)findViewById(R.id.friendEmailText)).setText(list.get(2));
+        ((TextView)findViewById(R.id.billNameText)).setText(list.get(0));
+        ((TextView)findViewById(R.id.billDateText)).setText("Date: " + list.get(1));
+        ((TextView)findViewById(R.id.billAmountText)).setText("Subtotal: $ " + list.get(2));
+        ((TextView)findViewById(R.id.billTipText)).setText("Tip: " + list.get(3) + "%");
+        ((TextView)findViewById(R.id.billTaxText)).setText("Tax: " + list.get(4) + "%");
+        ((TextView)findViewById(R.id.billTotalText)).setText("Total: $" + list.get(5));
+        ((TextView)findViewById(R.id.billParticipantsText)).setText("Participants: " + list.get(6).substring(1,(list.get(6).length() - 1)));
+        ((TextView)findViewById(R.id.billAmtPerText)).setText("Amount per participant: $ " + list.get(7));
 
-        setTitle(getString(R.string.title_activity_view_more_friend) + " " + ViewFriendsDefault.friend_first_name);
+        setTitle(getString(R.string.title_activity_view_more_friend) + " " + ViewBillsDefault.bill_name);
     }
 
 
@@ -55,5 +66,34 @@ public class ViewMoreBill extends ActionBarActivity {
 //        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private ArrayList<String> stringToArray(String arrayString){
+        ArrayList<String> list = new ArrayList<String> ();
+        int element = 0;
+        char current = ' ';
+
+        for(int i = 0 ; i < arrayString.length() ; i++){
+            current = arrayString.charAt(i);
+            System.out.println(current);
+            if(current == ' ') {
+                continue;
+            }
+            else if(current == ',') {
+                element++;
+                list.add(element, "");
+            }
+            else if(current == '[') {
+                list.add(element, "");
+            }
+            else if(current == ']') {
+                continue;
+            }
+            else {
+                list.get(element).concat(String.valueOf(current));
+            }
+        }
+
+        return list;
     }
 }

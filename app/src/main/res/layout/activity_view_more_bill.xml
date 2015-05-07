@@ -9,9 +9,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="67dp"
-        android:id="@+id/imageView"
+        android:id="@+id/billImageView"
         android:layout_gravity="right"
-        android:src="@android:drawable/sym_def_app_icon"
+        android:src="@android:mipmap/sym_def_app_icon"
         android:layout_weight="0.06" />
 
     <TextView
@@ -24,9 +24,9 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_alignParentEnd="false"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_alignBottom="@+id/imageView"
+        android:layout_toRightOf="@+id/billImageView"
+        android:layout_alignTop="@+id/billImageView"
+        android:layout_alignBottom="@+id/billImageView"
         android:gravity="center_vertical" />
 
     <TextView
@@ -35,9 +35,9 @@
         android:id="@+id/billDateText"
         android:textColor="#ff000000"
         android:textStyle="italic"
-        android:layout_below="@+id/friendNameText"
+        android:layout_below="@+id/billNameText"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_alignLeft="@+id/friendNameText" />
+        android:layout_alignLeft="@+id/billNameText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,9 +46,8 @@
         android:textColor="#ff000000"
         android:textStyle="italic"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_below="@+id/friendPhoneText"
-        android:layout_alignLeft="@+id/friendPhoneText" />
+        android:layout_below="@+id/billDateText"
+        android:layout_alignLeft="@+id/billDateText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,9 +55,9 @@
         android:id="@+id/billTipText"
         android:textColor="#ff000000"
         android:textStyle="italic"
-        android:layout_below="@+id/friendNameText"
+        android:layout_below="@+id/billAmountText"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_alignLeft="@+id/friendNameText" />
+        android:layout_alignLeft="@+id/billAmountText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,19 +66,19 @@
         android:textColor="#ff000000"
         android:textStyle="italic"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_below="@+id/friendPhoneText"
-        android:layout_alignLeft="@+id/friendPhoneText" />
+        android:layout_below="@+id/billTipText"
+        android:layout_alignLeft="@+id/billTipText" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/billTotalText"
         android:textColor="#ff000000"
-        android:textStyle="italic"
-        android:layout_below="@+id/friendNameText"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_alignLeft="@+id/friendNameText" />
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:textStyle="bold|italic"
+        android:layout_alignLeft="@+id/billTaxText"
+        android:layout_below="@+id/billTaxText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,9 +87,8 @@
         android:textColor="#ff000000"
         android:textStyle="italic"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_below="@+id/friendPhoneText"
-        android:layout_alignLeft="@+id/friendPhoneText" />
+        android:layout_below="@+id/billTotalText"
+        android:layout_alignLeft="@+id/billTotalText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -99,8 +97,7 @@
         android:textColor="#ff000000"
         android:textStyle="italic"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_below="@+id/friendPhoneText"
-        android:layout_alignLeft="@+id/friendPhoneText" />
+        android:layout_below="@+id/billParticipantsText"
+        android:layout_alignLeft="@+id/billParticipantsText" />
 
 </RelativeLayout>
