@@ -20,12 +20,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class AddBillDefault extends ActionBarActivity {
@@ -38,6 +39,8 @@ public class AddBillDefault extends ActionBarActivity {
     private double total;
     private String participants;
     private double amtPer;
+    private Date dateOrig;
+    private String dateString;
     private SQLiteHelperBills sqLiteHelperBills;
     private SQLiteHelperFriends friends;
 
@@ -48,6 +51,8 @@ public class AddBillDefault extends ActionBarActivity {
         sqLiteHelperBills = new SQLiteHelperBills(this);
         friendsAdded = new ArrayList<String>();
         billName = "";
+        dateOrig = null;
+        dateString = "";
         amount = 0.0;
         tip = 0.0;
         tax = 0.0;
@@ -72,10 +77,10 @@ public class AddBillDefault extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -135,7 +140,6 @@ public class AddBillDefault extends ActionBarActivity {
     }
 
     public void saveBill(View view) {
-        String amountString;
         billName = ((EditText)findViewById(R.id.billNameText)).getText().toString();
 
         if (billName.isEmpty()){
@@ -152,7 +156,11 @@ public class AddBillDefault extends ActionBarActivity {
         participants = friendsAdded.toString();
         amtPer = total / friendsAdded.size();
 
-        boolean result = sqLiteHelperBills.saveBill(billName, amount, tip, tax, total, participants, amtPer);
+        SimpleDateFormat date_format = new SimpleDateFormat("MM/dd/yy");
+        dateOrig = new Date();
+        dateString = date_format.format(dateOrig);
+
+        boolean result = sqLiteHelperBills.saveBill(billName, dateString, amount, tip, tax, total, participants, amtPer);
 
         if (result){
             new Handler().postDelayed(new Runnable() {

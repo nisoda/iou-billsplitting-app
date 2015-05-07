@@ -37,7 +37,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:inputType="numberDecimal"
+                android:inputType="phone|numberDecimal"
                 android:ems="10"
                 android:id="@+id/amountText"
 
@@ -138,7 +138,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:inputType="number"
+                android:inputType="number|phone"
                 android:ems="10"
                 android:id="@+id/custTipText"
                 android:layout_toRightOf="@+id/tipRadioGroup"
@@ -209,7 +209,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="30dp"
-                android:inputType="number"
+                android:inputType="number|phone"
                 android:ems="10"
                 android:id="@+id/custTaxText"
                 android:hint="-- %"
