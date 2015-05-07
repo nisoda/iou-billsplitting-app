@@ -1,9 +1,11 @@
 package a.myapplication1;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import android.view.ViewGroup.LayoutParams;
 
 
+
 public class ViewFriendsDefault extends ActionBarActivity {
 
     private SQLiteHelperFriends friends;
@@ -35,6 +38,23 @@ public class ViewFriendsDefault extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         friends = new SQLiteHelperFriends(this);
+
+        String[] columns = new String[]{
+                ContactsContract.Contacts.DISPLAY_NAME,
+                ContactsContract.Contacts._ID
+        };
+
+        Cursor contactsCursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, columns, null,null,null);
+
+        int nameColumn = contactsCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+        if(contactsCursor.moveToFirst()){
+            do{
+                //add contacts to friends table
+                String name = contactsCursor.getString(nameColumn);
+                friends.saveFriend(name,"","");
+            }while(contactsCursor.moveToNext());
+        }
+
         setContentView(R.layout.activity_view_friends_default);
         Cursor cursor = friends.getAllFriends();
         String[]from = new String[]{SQLiteHelperFriends.COLUMN_NAME, SQLiteHelperFriends.COLUMN_PHONE, SQLiteHelperFriends.COLUMN_EMAIL};
