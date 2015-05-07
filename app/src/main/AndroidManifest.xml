@@ -48,6 +48,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="a.myapplication1.ViewFriendsDefault" />
         </activity>
+        <activity
+            android:name=".ViewMoreFriend"
+            android:label="@string/title_activity_view_more_friend"
+            android:parentActivityName=".ViewFriendsDefault" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a.myapplication1.ViewFriendsDefault" />
+        </activity>
+        <activity
+            android:name=".ViewMoreBill"
+            android:label="@string/title_activity_view_more_bill"
+            android:parentActivityName=".ViewBillsDefault" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="a.myapplication1.ViewBillsDefault" />
+        </activity>
     </application>
 
 </manifest>

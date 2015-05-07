@@ -17,6 +17,7 @@ public class SQLiteHelperBills extends SQLiteOpenHelper {
     public static final String TABLE_BILLS = "bills";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_BILL_NAME = "bill_name";
+    public static final String COLUMN_DATE = "date";
     public static final String COLUMN_AMOUNT = "amount";
     public static final String COLUMN_TIP = "tip";
     public static final String COLUMN_TAX = "tax";
@@ -30,6 +31,7 @@ public class SQLiteHelperBills extends SQLiteOpenHelper {
             " (" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_BILL_NAME + " TEXT  NOT NULL, " +
+            COLUMN_DATE + " TEXT NOT NULL, " +
             COLUMN_AMOUNT + " REAL, " +
             COLUMN_TIP + " REAL, " +
             COLUMN_TAX + " REAL, " +
@@ -39,7 +41,8 @@ public class SQLiteHelperBills extends SQLiteOpenHelper {
     //Assume unique friend names
 
     private static final String QUERY_BILLS_ALL = "SELECT * FROM " + TABLE_BILLS + ";";
-    private static final String QUERY_BILLS_NAMES = "SELECT " + COLUMN_BILL_NAME + " FROM " + TABLE_BILLS + ";";
+    private static final String QUERY_BILLS_NAMES_DATES = "SELECT " + COLUMN_BILL_NAME +
+            ", " + COLUMN_DATE + " FROM " + TABLE_BILLS + ";";
 
     public SQLiteHelperBills(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -57,14 +60,15 @@ public class SQLiteHelperBills extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean saveBill(String billName, double amount, double tip, double tax, double total, String participants, double amtPer)
+    public boolean saveBill(String billName, String date, double amount, double tip, double tax, double total, String participants, double amtPer)
     {
-        Cursor cursor = getBill(billName);
+        Cursor cursor = getBill(billName, date);
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_BILL_NAME, billName);
+        contentValues.put(COLUMN_DATE, date);
         contentValues.put(COLUMN_AMOUNT, amount);
         contentValues.put(COLUMN_TIP, tip);
         contentValues.put(COLUMN_TAX, tax);
@@ -75,9 +79,11 @@ public class SQLiteHelperBills extends SQLiteOpenHelper {
         long result;
         if (cursor.getCount() == 0) { // Record does not exist
             contentValues.put(COLUMN_BILL_NAME, billName);
+            contentValues.put(COLUMN_DATE, date);
             result = db.insert(TABLE_BILLS, null, contentValues);
         } else { // Record exists
-            result = db.update(TABLE_BILLS, contentValues, COLUMN_BILL_NAME + "=?", new String[] { billName });
+            result = db.update(TABLE_BILLS, contentValues, COLUMN_BILL_NAME + "=? AND " +
+                    COLUMN_DATE + "=?" , new String[] { billName, date });
         }
 //
         if (result == -1) {
@@ -87,13 +93,13 @@ public class SQLiteHelperBills extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getBill(String name){
+    public Cursor getBill(String billName, String date){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String sql = "SELECT * FROM " + TABLE_BILLS + " WHERE bill_Name=?";
+        String sql = "SELECT * FROM " + TABLE_BILLS + " WHERE bill_Name=? AND date=?";
 
-        return db.rawQuery(sql, new String[] { name } );
+        return db.rawQuery(sql, new String[] { billName, date } );
     }
 
     public Cursor getAllBills(){

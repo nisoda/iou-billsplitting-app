@@ -16,5 +16,10 @@
     <string name="title_activity_add_friend_default">Add Friend</string>
     <string name="hello_world">Hello world!</string>
     <string name="button_done">Done</string>
+    <string name="title_activity_view_more_friend">View More: </string>
+    <string name="name_label">Name: </string>
+    <string name="phone_label">Phone: </string>
+    <string name="email_label">Email: </string>
+    <string name="title_activity_view_more_bill">"View More: "</string>
 
 </resources>

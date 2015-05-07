@@ -17,14 +17,16 @@
         android:id="@+id/friend_phone"
         android:password="false"
         android:phoneNumber="false"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:id="@+id/friend_email"
         android:padding="15dp"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:visibility="gone" />
 
 
 </LinearLayout>
