@@ -90,4 +90,12 @@ public class SQLiteHelperFriends extends SQLiteOpenHelper {
         return db.rawQuery(QUERY_FRIENDS_ALL, new String[]{});
     }
 
+//    public void deleteFriend(String name) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        String sql = "DELETE FROM " + TABLE_FRIENDS + " WHERE name=?";
+//
+//        db.rawQuery(sql, new String[] { name });
+//    }
+
 }

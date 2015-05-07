@@ -21,7 +21,7 @@ public class ViewMoreFriend extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         friends = new SQLiteHelperFriends(this);
 
-        Cursor cursor = friends.getFriend(ViewFriendsDefault.friend_first_name);
+        Cursor cursor = friends.getFriend(ViewFriendsDefault.friend_name_string);
         if(cursor.moveToFirst()){
             do {
                 for(int i = 1 ; i < 4 ; i++)
@@ -34,7 +34,7 @@ public class ViewMoreFriend extends ActionBarActivity {
         ((TextView)findViewById(R.id.friendPhoneText)).setText(list.get(1));
         ((TextView)findViewById(R.id.friendEmailText)).setText(list.get(2));
 
-        setTitle(getString(R.string.title_activity_view_more_friend)+ " " + ViewFriendsDefault.friend_first_name);
+        setTitle(getString(R.string.title_activity_view_more_friend)+ " " + ViewFriendsDefault.friend_name_string);
 
     }
 
